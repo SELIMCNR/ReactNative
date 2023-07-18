@@ -70,4 +70,64 @@ const arr2 = [...arr,8,9,10]; // spread işlemi
 console.log(...arr); // spread işlemi tüm diziyi yazdırır.
 console.log(arr2);
 
-//Promise
+//Promise hatalı mı hatasız mı işlem kontrolü yapar
+
+new Promise(function(resolve,reject){
+    const islem = 1;
+    if(islem){
+        resolve();
+    }
+    else{
+        reject();
+    }
+})
+.then(()=>{
+        console.log("İşlem tamam")
+})
+.catch(()=> console.log("hata var"))
+
+//2.yazım şekli
+const islemKontrol= new Promise(function(resolve,reject){
+    const islem = 1;
+    if(islem){
+        resolve();
+    }
+    else{
+        reject();
+    }
+})
+islemKontrol.then(()=>{
+        console.log("İşlem tamam")
+})
+.catch(()=> console.log("hata var"))
+
+//3.yazım şekli
+islemKontrol.then((e)=>{
+    console.log(e);
+}).catch(()=> console.log("hata var"))
+
+//Async & Await : break komutu gibi orda dur bekle işlem gerçekleşince çalış
+
+const axios = require("axios ");
+ getData =async () => {
+   await axios.get("https.//xwmd.com")
+    .then((res)=>{
+        console.log(res);
+    })
+    .catch((e)=> console.log(e))
+};
+
+getShow=async ()=>{
+    await getData();
+    console.log("Verileri çekmeden burası asla gösterme")
+};
+
+//exports module başka js dosyalarına erişim
+const result = require('./export'); // diğer js'ye eriş
+console.log(result.name);
+
+const{hesapla,cikar}=require('./export');
+console.log(hesapla(5,20));
+console.log(cikar(5,3));
+
+
